@@ -52,8 +52,10 @@ module Wonde
     # @example
     #   client = Wonde::Client.new("SOMETOKEN")
     #   client.requestAccess("A0000000000")
-    def requestAccess(schoolId)
-      return Wonde::Endpoints.new(@token, ('schools/' + schoolId + '/request-access')).post()
+    def requestAccess(schoolId, contacts = [])
+      return Wonde::Endpoints.new(@token, ('schools/' + schoolId + '/request-access')).post({
+        contacts: contacts
+      })
     end
 
     # revokeAccess endpoint DELETE
